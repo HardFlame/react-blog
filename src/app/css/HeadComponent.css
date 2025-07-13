@@ -1,3 +1,5 @@
+@reference "tailwindcss"
+
 #root {
     max-width: 1280px;
     margin: 0 auto;
@@ -6,8 +8,8 @@
 }
 
 .logo {
-    height: 6em;
-    padding: 1.5em;
+    height: 2em;
+    padding: 0.1em;
     will-change: filter;
     transition: filter 300ms;
 }
@@ -33,10 +35,18 @@
     }
 }
 
-.card {
-    padding: 2em;
+header {
+    &:before {
+        content: "";
+        background-color: gray;
+        bottom: -0.5rem;
+        width: 100%;
+        height: 1px;
+        @apply block absolute;
+    }
+    @apply flex relative items-end w-7xl justify-between mb-8
 }
 
-.read-the-docs {
-    color: #888;
+#You-here {
+    @apply flex items-end;
 }
