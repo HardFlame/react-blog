@@ -36,6 +36,7 @@
 }
 
 header {
+    @apply flex relative items-end w-7xl justify-between mb-8;
     &:before {
         content: "";
         background-color: gray;
@@ -44,7 +45,6 @@ header {
         height: 1px;
         @apply block absolute;
     }
-    @apply flex relative items-end w-7xl justify-between mb-8
 }
 
 #You-here {

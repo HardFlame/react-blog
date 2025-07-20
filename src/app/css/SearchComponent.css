@@ -1,0 +1,12 @@
+@reference "tailwindcss";
+@source "default-border";
+
+#search-posts {
+    @apply flex relative border rounded-lg;
+    & button {
+        @apply flex items-center pointer-events-none p-0;
+        & svg {
+            @apply w-4 h-4 text-gray-500 dark:text-gray-400;
+        }
+    }
+}

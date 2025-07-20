@@ -1,7 +1,7 @@
-@reference "tailwindcss";
+@import "tailwindcss";
 
 .post {
-
+    
 }
 .post-head {
 
