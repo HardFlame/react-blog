@@ -11,18 +11,18 @@ export const userMap = createSlice({
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-        updateUserMap: (state: {[k:number]:IUser}, action) => {
-            // console.log('action',action)
-            const user:IUser = action.payload;
-            // console.log('u!',user)
-            // // state.set(user.id,user)
-            // console.log('id',user.id)
-            // state = Object.assign(state,{[+user.id]:user})
-            // state = {...state,{[+user.id]:user}}
-            // state.value 
-            // state[+user.id] = user
-            // console.log('state',state)
-        },
+        // updateUserMap: (state: {[k:number]:IUser}, action) => {
+        //     // console.log('action',action)
+        //     const user:IUser = action.payload;
+        //     // console.log('u!',user)
+        //     // // state.set(user.id,user)
+        //     // console.log('id',user.id)
+        //     // state = Object.assign(state,{[+user.id]:user})
+        //     // state = {...state,{[+user.id]:user}}
+        //     // state.value 
+        //     // state[+user.id] = user
+        //     // console.log('state',state)
+        // },
 
         // Use the PayloadAction type to declare the contents of `action.payload`
         // incrementByAmount: (state, action: PayloadAction<number>) => {
@@ -31,8 +31,8 @@ export const userMap = createSlice({
     },
 });
 
-export const { updateUserMap /*, incrementByAmount*/ } =
-    userMap.actions;
+// export const { updateUserMap } =
+//     userMap.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 // export const selectCount = (state: RootState) => state.counter.value;
