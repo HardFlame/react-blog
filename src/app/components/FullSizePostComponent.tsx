@@ -6,7 +6,7 @@ import PostAuthorComponent from "./PostAuthorComponent";
 import PostFavoriteComponent from "./PostFavoriteComponent";
 // import { useTypedSelector } from "../hooks/useTypesSelector";
 
-export default function MiniPostComponent({
+export default function FullSizePostComponent({
     postData,
     isFavorite,
 }: {
@@ -30,7 +30,7 @@ export default function MiniPostComponent({
             <div className="flex justify-between">
                 <div className="flex gap-1 items-center cursor-pointer">
                     <PostFavoriteComponent postId={postId} isFavorite={isFavorite} />
-                    <NavLink to={'../posts/'+String(postId)}>
+                    <NavLink to={'posts/'+String(postId)}>
                         <h3 className="font-bold">{title}</h3>
                     </NavLink>
                 </div>
@@ -40,7 +40,7 @@ export default function MiniPostComponent({
                 <PostAuthorComponent authorId={authorId} />
                 <div className="flex gap-0.5">
                     {tags?.map((tag) => {
-                        return <TagComponent name={tag} link={'../tags/'+tag} />;
+                        return <TagComponent name={tag} link={tag} />;
                     })}
                 </div>
             </div>

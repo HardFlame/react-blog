@@ -1,12 +1,3 @@
-@reference "tailwindcss"
-
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
-
 .logo {
     height: 2em;
     padding: 0.1em;
@@ -33,20 +24,4 @@
     a:nth-of-type(2) .logo {
         animation: logo-spin infinite 20s linear;
     }
-}
-
-header {
-    @apply flex relative items-end w-7xl justify-between mb-8;
-    &:before {
-        content: "";
-        background-color: gray;
-        bottom: -0.5rem;
-        width: 100%;
-        height: 1px;
-        @apply block absolute;
-    }
-}
-
-#You-here {
-    @apply flex items-end;
 }

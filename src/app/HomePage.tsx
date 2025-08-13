@@ -1,27 +1,42 @@
+// import { updatePostsUsername } from "../utils/getPosts";
 import HeadComponent from "./components/HeadComponent";
-import MiniPostComponent from "./components/MinPostComponent";
-import SearchComponent from "./components/SearchComponent";
-import { type IPost } from "../types/Post";
+// import { useEffect, useState } from "react";
+// import { type IPost } from "../types/Post";
+// import { type IUser } from "../types/User";
+// import { getAllPosts } from "../utils/getPosts";
+import { usePostsQuery } from "./store/Posts/Post.api";
+import { getFetchMessage } from "../utils/FetchUtils";
+import PostsComponent from "./components/PostsComponent";
+import SearchPosts from "./HOC/SearchPostsHOC";
+// import { useEffect } from "react";
+// import type { IUser } from "../types/User";
+// import { useTypedSelector } from "./hooks/useTypesSelector";
 //import "./css/HomePage.css";
 
 export default function HomePage() {
-    const posts: IPost[] = [
-        {
-            title: "PostName",
-            author: "Nick",
-            tags: ["blog", "sun", "summer"],
-            content: "Hi everyone!",
-        },
-    ];
-    // const [count, setCount] = useState(0);
-    //const CurrentPage = "Main Blog";
+    const {
+        isLoading: isLoadingPosts,
+        isError: isErrorPosts,
+        error: errorPosts,
+        data: posts,
+    } = usePostsQuery("");
     return (
         <>
             <HeadComponent page="Main Blog" />
-            <SearchComponent />
-            {posts.map((postData) => {
-                return <MiniPostComponent postData={postData} />;
-            })}
+
+            <SearchPosts>
+                {posts ? (
+                    <PostsComponent posts={posts} />
+                ) : (
+                    <>
+                        {getFetchMessage(
+                            isLoadingPosts,
+                            isErrorPosts,
+                            errorPosts
+                        )}
+                    </>
+                )}
+            </SearchPosts>
         </>
     );
 }

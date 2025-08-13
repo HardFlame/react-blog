@@ -1,12 +1,21 @@
-import "../css/SearchComponent.css";
+import { useDispatch } from "react-redux";
+import { useDebounce } from "../hooks/debounce";
+import { useEffect, useState } from "react";
+import { changeText } from "../store/searchQuery/searchPostsQuery.slice";
 
 export default function SearchComponent() {
-    function search() {}
+    const dispatch = useDispatch()
+    const [search,setSearch] = useState('')
+    const debounced = useDebounce(search)
+    useEffect(()=>{
+        dispatch(changeText(debounced));
+        // console.log(debounced)
+    },[debounced,dispatch])
     return (
-        <form id="search-posts" action={search} className="">
-            <button type="submit">
+        <form id="search-posts" className="flex relative default-border h-8 mb-5">
+            <button type="submit" className="flex items-center py-1 px-1 h-full default-border border-none self-center cursor-pointer">
                 <svg
-                    className=""
+                    className=" text-gray-500 dark:text-gray-400 w-full h-full"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -22,9 +31,12 @@ export default function SearchComponent() {
                 </svg>
             </button>
             <input
+                className="w-full h-full px-0.5 default-border border-none outline-none"
                 type="search"
                 name="search-posts"
                 placeholder="Search posts"
+                value={search}
+                onChange={(e=>setSearch(e.target.value))}
             />
         </form>
     );
