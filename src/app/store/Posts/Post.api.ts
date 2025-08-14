@@ -4,9 +4,8 @@ import type { IPost } from "../../../types/Post";
 import { dummyUpdate } from "../../../utils/getPosts";
 import type { IUser } from "../../../types/User";
 
-
-const BASE_URL  = "https://jsonplaceholder.typicode.com/"
-export const UserMap: Map<number,IUser> = new Map()
+const BASE_URL = "https://jsonplaceholder.typicode.com/";
+export const UserMap: Map<number, IUser> = new Map();
 export const postApi = createApi({
     reducerPath: "placeholder/api",
     baseQuery: fetchBaseQuery({
@@ -14,16 +13,21 @@ export const postApi = createApi({
     }),
     endpoints: (build) => ({
         posts: build.query<IPost[], string>({
-            query: (id?: string| number[]) => {
+            query: (id?: string | number, userId?: string) => {
                 const q: {
                     url: string;
                     params?: {
-                        [k: string]: string | (string | number)[];
+                        [k: string]: string | number;
                     };
                 } = { url: "posts" };
                 if (id) {
                     q.params = {
                         id: id,
+                    };
+                }
+                if (userId) {
+                    q.params = {
+                        userId: userId,
                     };
                 }
                 return q;
@@ -44,27 +48,26 @@ export const postApi = createApi({
                 return posts;
             },
         }),
-        users: build.query<IUser[],string>({
-            query: (userId?: string|number[]) => {
-                const q:{
-                    url:string,
-                    params?:{
-                        [k:string]:string|
-                        (string|number)[]
-                    }
-                } = {url: 'users'}
+        users: build.query<IUser[], string>({
+            query: (userId?: string | number[]) => {
+                const q: {
+                    url: string;
+                    params?: {
+                        [k: string]: string | (string | number)[];
+                    };
+                } = { url: "users" };
                 if (userId) {
                     q.params = {
-                        id: userId
-                    }
+                        id: userId,
+                    };
                 }
-                return q
+                return q;
             },
-            transformResponse: (users:IUser[]) => {
-                users.forEach(user=>UserMap.set(user.id,user))
-                return users
-            } 
-        })
+            transformResponse: (users: IUser[]) => {
+                users.forEach((user) => UserMap.set(user.id, user));
+                return users;
+            },
+        }),
     }),
 });
 

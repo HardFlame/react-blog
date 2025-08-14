@@ -8,7 +8,7 @@ import FullSizePostComponent from "../components/FullSizePostComponent";
 //import "./css/HomePage.css";
 
 export default function PostPage() {
-    //TODO UserPage, TagPage like this page
+    //TODO TagPage like this page
     const { postId = "" } = useParams();
     const {
         isLoading: isLoadingPosts,
