@@ -1,6 +1,6 @@
 import type { IPost } from "../types/Post";
 import type { IUser } from "../types/User";
-import { getUsers } from "./getUsers";
+// import { getUsers } from "./getUsers";
 import { capitalizeFirstLetter } from "./TextUtils";
 
 const userMap = new Map<number, IUser>();
@@ -47,29 +47,5 @@ export function dummyUpdate(posts:IPost[]) {
     });
     return posts
 }
-async function getAllPosts() {
-    try {
-        const postsResponse = await fetch(
-            "https://jsonplaceholder.typicode.com/posts"
-        );
-        const postsData = (await postsResponse.json()) as IPost[];
-        //posts.splice(0, posts.length, ...(postsData as IPost[]));
-        const posters = new Set<string | number>();
-        postsData.forEach((user) => posters.add(user.userId));
-        await getUsers(Array.from(posters.keys()));
-        updatePostsUsername(postsData);
-        dummyUpdate(postsData)
-        // setPosts([...(posts as IPost[]), ...(postsData.map((post: IPost) => post) as IPost[])]);
-        // setPosts([...postsData]);
-        return postsData
-        // console.log(posts);
-    } catch (error) {
-        console.error("Error fetching posts:", error);
-        return []
-    }
-}
 
-
-export {getAllPosts}
-// const [count, setCount] = useState(0);
 //const CurrentPage = "Main Blog";
